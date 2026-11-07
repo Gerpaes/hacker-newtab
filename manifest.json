@@ -2,9 +2,10 @@
   "manifest_version": 3,
   "name": "Mi pantalla",
   "version": "1.0",
-  "description": "Pantalla de inicio en Chrome",
+  "description": "Nueva pestaña hacker: terminal, notas, toolkit de seguridad, Matrix y monitor del sistema",
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },
-  "permissions": ["topSites", "bookmarks", "favicon", "storage", "system.cpu", "system.memory", "system.display"]
+  "permissions": ["topSites", "bookmarks", "favicon", "storage", "system.cpu", "system.memory", "system.display"],
+  "author": "Gerson Paredes"
 }
