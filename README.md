@@ -23,7 +23,7 @@ Todas las pantallas se recolocan sobre la imagen de fondo al cambiar el tamaño 
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/Gerpaes/NOMBRE-DEL-REPO.git
+   git clone https://github.com/Gerpaes/hacker-newtab.git
    ```
 2. Abre `chrome://extensions` en Chrome.
 3. Activa el **Modo de desarrollador** (arriba a la derecha).
