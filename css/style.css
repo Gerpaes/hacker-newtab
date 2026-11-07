@@ -1,0 +1,523 @@
+/* =========================================
+   Capas (z-index) de toda la página
+   ========================================= */
+:root {
+    --capa-pantallas: 1;
+    --capa-reloj: 10;
+    --capa-desplegables: 20;
+}
+
+/* =========================================
+   Reset básico
+   ========================================= */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* =========================================
+   Página
+   ========================================= */
+body {
+    margin: 0;
+    height: 100vh;
+    padding: 12px;
+
+    background-image: url("../images/fondo_vacio.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* Lo heredan todos los textos */
+    color: white;
+    font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+
+    /* Centra el contenido principal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================================
+   Panel central: reloj y saludo
+   ========================================= */
+.contenido {
+    position: relative;
+    z-index: var(--capa-reloj);
+    padding: 24px 48px;
+    text-align: center;
+    background-color: rgba(5, 8, 15, 0.6);
+    border: 1px solid rgba(80, 150, 255, 0.4);
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+}
+
+#reloj {
+    margin: 0;
+    font-size: 5rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: rgb(60, 255, 140);
+    text-shadow: 0 0 12px rgba(60, 255, 140, 0.6);
+}
+
+#saludo {
+    margin: 8px 0 0;
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: rgb(230, 57, 70);
+}
+
+/* =========================================
+   Desplegable de accesos directos (sobre el teclado)
+   ========================================= */
+.accesos {
+    position: fixed;
+    /* left, top, width y height los pone el JS */
+    z-index: var(--capa-desplegables);
+    display: flex;
+    align-items: center;
+
+    background-color: rgba(5, 8, 15, 0.75);
+    border: 1px solid rgba(80, 150, 255, 0.4);
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+}
+
+/* Botón que abre y cierra */
+.accesos summary {
+    width: 100%;
+    padding: 0 16px;
+    cursor: pointer;
+    list-style: none;
+    color: rgb(80, 150, 255);
+}
+
+.accesos summary::-webkit-details-marker {
+    display: none;
+}
+
+/* La lista flota encima del teclado */
+.accesos ul {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 8px);
+    width: 340px;
+
+    margin: 0;
+    padding: 8px;
+    list-style: none;
+    max-height: 60vh;
+    overflow-y: auto;
+    scrollbar-color: rgba(80, 150, 255, 0.5) transparent;
+    scrollbar-width: thin;
+
+    background-color: rgba(5, 8, 15, 0.9);
+    border: 1px solid rgba(80, 150, 255, 0.4);
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+}
+
+/* Cada sitio: icono + nombre en fila */
+.accesos a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 320px;
+    padding: 8px 12px;
+    border-radius: 8px;
+
+    color: white;
+    text-decoration: none;
+}
+
+.accesos a:hover {
+    background-color: rgba(230, 57, 70, 0.25);
+    color: rgb(230, 57, 70);
+}
+
+.accesos img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.accesos span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* =========================================
+   Pantallas funcionales (posición y tamaño los pone el JS)
+   ========================================= */
+.pantalla {
+    position: fixed;
+    z-index: var(--capa-pantallas);
+}
+
+/* =========================================
+   Lluvia Matrix
+   ========================================= */
+
+/* Recorta el canvas con la forma de la pantalla en perspectiva */
+#matrix {
+    clip-path: polygon(0% 7.9%, 100% 0%, 100% 85.3%, 0% 100%);
+}
+
+/* =========================================
+   Terminal de comandos
+   ========================================= */
+.terminal {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: rgb(190, 205, 230);
+}
+
+/* Historial: ocupa el espacio libre y hace scroll */
+.terminal-salida {
+    flex: 1;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    scrollbar-width: none;
+}
+
+.terminal-linea {
+    display: flex;
+    gap: 8px;
+}
+
+.terminal-prompt {
+    color: rgb(60, 255, 140);
+    white-space: nowrap;
+}
+
+.terminal-linea input {
+    flex: 1;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    font: inherit;
+    caret-color: rgb(60, 255, 140);
+}
+
+.terminal-error {
+    color: rgb(230, 57, 70);
+}
+
+.terminal-info {
+    color: rgb(80, 150, 255);
+}
+
+/* =========================================
+   Notas rápidas
+   ========================================= */
+.notas {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px;
+}
+
+.notas textarea {
+    flex: 1;
+    padding: 0;
+    border: none;
+    outline: none;
+    resize: none;
+    background: transparent;
+    color: rgb(190, 205, 230);
+    font: inherit;
+    font-size: 13px;
+    line-height: 1.5;
+    caret-color: rgb(60, 255, 140);
+    scrollbar-width: none;
+}
+
+.notas textarea::placeholder {
+    color: rgba(190, 205, 230, 0.35);
+}
+
+.notas-estado {
+    margin: 0;
+    font-size: 11px;
+    text-align: right;
+    color: rgba(80, 150, 255, 0.7);
+}
+
+/* =========================================
+   Monitor del sistema (CPU y RAM)
+   ========================================= */
+.sysmon {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 2.5em 2.5em 4em;
+    font-size: clamp(10px, 0.7vw, 13px);
+    color: rgb(190, 205, 230);
+
+    /* Inclinada al revés que la Matrix: el lado izquierdo es el alto */
+    clip-path: polygon(0% 0%, 100% 7.9%, 100% 100%, 0% 85.3%);
+}
+
+.sysmon-modelo,
+.sysmon-detalle {
+    margin: 0;
+    font-size: 0.85em;
+    color: rgba(190, 205, 230, 0.6);
+}
+
+.sysmon-detalle {
+    text-align: right;
+}
+
+.sysmon-fila {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sysmon-etiqueta {
+    width: 32px;
+    color: rgb(80, 150, 255);
+}
+
+.sysmon-valor {
+    width: 40px;
+    text-align: right;
+}
+
+/* Barra horizontal: fondo + relleno */
+.barra {
+    flex: 1;
+    height: 10px;
+    overflow: hidden;
+    border-radius: 5px;
+    background-color: rgba(80, 150, 255, 0.15);
+}
+
+.barra-relleno {
+    width: 0;
+    height: 100%;
+    transition: width 0.5s, background-color 0.5s;
+}
+
+/* Un mini gráfico de barras verticales, una por núcleo */
+.sysmon-nucleos {
+    display: flex;
+    flex-shrink: 0;
+    /* sin texto dentro, flexbox la aplastaría a 0 px */
+    align-items: flex-end;
+    gap: 3px;
+    height: 36px;
+    margin-left: 42px;
+}
+
+.nucleo {
+    flex: 1;
+    min-height: 2px;
+    border-radius: 2px 2px 0 0;
+    transition: height 0.5s, background-color 0.5s;
+}
+
+.sysmon-linea {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.estado-online {
+    color: rgb(60, 255, 140);
+}
+
+.estado-offline {
+    color: rgb(230, 57, 70);
+}
+
+/* =========================================
+   Caja de herramientas (toolkit.sh)
+   ========================================= */
+.toolkit {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 3em 2.5em 2.5em;
+    font-size: clamp(10px, 0.7vw, 13px);
+    color: rgb(190, 205, 230);
+
+    /* Inclinada: el lado derecho es el más alto */
+    clip-path: polygon(0% 9.1%, 100% 0%, 100% 100%, 0% 89.6%);
+}
+
+/* Pestañas */
+.toolkit-pestanas {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid rgba(80, 150, 255, 0.3);
+}
+
+.toolkit-pestana {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 6px 6px 0 0;
+    background: transparent;
+    color: rgba(190, 205, 230, 0.6);
+    font: inherit;
+    cursor: pointer;
+}
+
+.toolkit-pestana[aria-selected="true"] {
+    background-color: rgba(80, 150, 255, 0.2);
+    color: rgb(80, 150, 255);
+}
+
+/* Cada panel ocupa el espacio que queda */
+.toolkit-panel {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0;
+}
+
+.toolkit-panel[hidden] {
+    display: none;
+}
+
+/* Este panel puede tener mucho contenido: que haga scroll */
+.toolkit-panel-scroll {
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+/* Campos de entrada y salida */
+.toolkit-entrada,
+.toolkit-salida {
+    flex: 1;
+    min-height: 0;
+    padding: 6px 8px;
+    overflow-y: auto;
+    border: 1px solid rgba(80, 150, 255, 0.25);
+    border-radius: 6px;
+    background-color: rgba(2, 6, 14, 0.6);
+    color: white;
+    font: inherit;
+    word-break: break-all;
+    scrollbar-width: none;
+}
+
+.toolkit-entrada {
+    resize: none;
+    outline: none;
+    caret-color: rgb(60, 255, 140);
+}
+
+.toolkit-salida {
+    color: rgb(60, 255, 140);
+}
+
+.toolkit-salida.error {
+    color: rgb(230, 57, 70);
+}
+
+.toolkit-campo {
+    padding: 6px 8px;
+    border: 1px solid rgba(80, 150, 255, 0.25);
+    border-radius: 6px;
+    outline: none;
+    background-color: rgba(2, 6, 14, 0.6);
+    color: white;
+    font: inherit;
+    caret-color: rgb(60, 255, 140);
+}
+
+/* Botones y selector */
+.toolkit-controles {
+    display: flex;
+    gap: 6px;
+}
+
+.toolkit-controles button,
+.toolkit-controles select {
+    padding: 3px 10px;
+    border: 1px solid rgba(80, 150, 255, 0.4);
+    border-radius: 4px;
+    background-color: rgba(80, 150, 255, 0.1);
+    color: rgb(190, 205, 230);
+    font: inherit;
+    cursor: pointer;
+}
+
+.toolkit-controles button:hover {
+    background-color: rgba(80, 150, 255, 0.3);
+}
+
+/* Tablas nombre | valor (subnet y url) */
+.toolkit-tabla {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 3px 16px;
+    margin: 0;
+}
+
+.toolkit-tabla dt {
+    color: rgb(80, 150, 255);
+}
+
+.toolkit-tabla dd {
+    margin: 0;
+    color: white;
+}
+
+.toolkit-tabla .error {
+    grid-column: 1 / -1;
+    color: rgb(230, 57, 70);
+}
+
+.toolkit-subtitulo {
+    grid-column: 1 / -1;
+    margin-top: 6px;
+    color: rgba(190, 205, 230, 0.5);
+}
+
+/* Subnet: vista en binario */
+.toolkit-binario {
+    font-size: 0.9em;
+    word-break: break-all;
+}
+
+.bits-red {
+    color: rgb(60, 255, 140);
+}
+
+.bits-host {
+    color: rgb(80, 150, 255);
+}
+
+/* URL: avisos */
+.toolkit-avisos {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.aviso-alto {
+    color: rgb(230, 57, 70);
+}
+
+.aviso-medio {
+    color: rgb(230, 180, 60);
+}
+
+.aviso-ok {
+    color: rgb(60, 255, 140);
+}

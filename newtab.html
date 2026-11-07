@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi pagina principal</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <main class="contenido">
+        <p id="reloj">00:00:00</p>
+        <h1 id="saludo">Hola</h1>
+    </main>
+
+    <details class="accesos">
+        <summary>⌨ Mis sitios</summary>
+        <ul id="sitios"></ul>
+    </details>
+
+    <canvas id="matrix" class="pantalla"></canvas>
+
+    <section id="terminal" class="pantalla terminal">
+        <div id="terminal-salida" class="terminal-salida"></div>
+        <form id="terminal-form" class="terminal-linea">
+            <label for="terminal-entrada" class="terminal-prompt">gerson@dev:~$</label>
+            <input id="terminal-entrada" type="text" autocomplete="off" spellcheck="false">
+        </form>
+    </section>
+
+    <section id="notas" class="pantalla notas">
+        <textarea id="notas-texto" spellcheck="false" placeholder="# Notas&#10;Escribe aquí… se guarda solo."></textarea>
+        <p id="notas-estado" class="notas-estado"></p>
+    </section>
+
+    <section id="sysmon" class="pantalla sysmon">
+        <p id="sysmon-modelo" class="sysmon-modelo"></p>
+    
+        <div class="sysmon-fila">
+            <span class="sysmon-etiqueta">CPU</span>
+            <div class="barra">
+                <div id="cpu-barra" class="barra-relleno"></div>
+            </div>
+            <span id="cpu-texto" class="sysmon-valor">--%</span>
+        </div>
+        <div id="cpu-nucleos" class="sysmon-nucleos"></div>
+    
+        <div class="sysmon-fila">
+            <span class="sysmon-etiqueta">RAM</span>
+            <div class="barra">
+                <div id="ram-barra" class="barra-relleno"></div>
+            </div>
+            <span id="ram-texto" class="sysmon-valor">--%</span>
+        </div>
+        <p id="ram-detalle" class="sysmon-detalle"></p>
+            <div class="sysmon-fila">
+                <span class="sysmon-etiqueta">NET</span>
+                <span id="red-texto" class="sysmon-linea">comprobando…</span>
+            </div>
+            
+            <div class="sysmon-fila">
+                <span class="sysmon-etiqueta">DSP</span>
+                <span id="pantallas-texto" class="sysmon-linea"></span>
+            </div>
+    </section>
+
+    <section id="toolkit" class="pantalla toolkit">
+        <div class="toolkit-pestanas" role="tablist">
+            <button class="toolkit-pestana" role="tab" aria-selected="true" aria-controls="panel-decode">decode</button>
+            <button class="toolkit-pestana" role="tab" aria-selected="false" aria-controls="panel-subnet">subnet</button>
+            <button class="toolkit-pestana" role="tab" aria-selected="false" aria-controls="panel-url">url</button>
+        </div>
+    
+        <!-- Pestaña: decode -->
+        <div id="panel-decode" class="toolkit-panel" role="tabpanel">
+            <textarea id="decode-entrada" class="toolkit-entrada" spellcheck="false"
+                placeholder="> pega aquí el texto"></textarea>
+    
+            <div class="toolkit-controles">
+                <select id="decode-operacion">
+                    <option value="base64">base64</option>
+                    <option value="hex">hex</option>
+                    <option value="rot13">rot13</option>
+                    <option value="url">url</option>
+                    <option value="sha256">sha256</option>
+                </select>
+                <button id="decode-codificar" type="button">codificar</button>
+                <button id="decode-decodificar" type="button">decodificar</button>
+            </div>
+    
+            <output id="decode-salida" class="toolkit-salida"></output>
+    
+            <div class="toolkit-controles">
+                <button id="decode-copiar" type="button">copiar</button>
+                <button id="decode-reutilizar" type="button">→ entrada</button>
+            </div>
+        </div>
+    
+        <div id="panel-subnet" class="toolkit-panel" role="tabpanel" hidden>
+            <input id="subnet-entrada" class="toolkit-campo" type="text" value="192.168.1.0/24" placeholder="192.168.1.0/24"
+            spellcheck="false" autocomplete="off">
+            <dl id="subnet-resultado" class="toolkit-tabla"></dl>
+            <div id="subnet-binario" class="toolkit-binario"></div>
+        </div>
+        
+        
+    <div id="panel-url" class="toolkit-panel toolkit-panel-scroll" role="tabpanel" hidden>
+        <input id="url-entrada" class="toolkit-campo" type="text" spellcheck="false" autocomplete="off"
+            placeholder="https://ejemplo.com/ruta?param=valor">
+        <dl id="url-partes" class="toolkit-tabla"></dl>
+        <dl id="url-parametros" class="toolkit-tabla"></dl>
+        <ul id="url-avisos" class="toolkit-avisos"></ul>
+    </div>
+    
+    </section>
+
+
+    <script src="js/script.js"></script>
+    
+</body>
+
+</html>

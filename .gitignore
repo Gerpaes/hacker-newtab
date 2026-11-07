@@ -1,0 +1,11 @@
+# Sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editor
+.vscode/
+
+# Extensión empaquetada: el .pem es la clave privada, nunca se sube
+*.crx
+*.pem

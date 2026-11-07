@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Mi pantalla",
+  "version": "1.0",
+  "description": "Pantalla de inicio en Chrome",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "permissions": ["topSites", "bookmarks", "favicon", "storage", "system.cpu", "system.memory", "system.display"]
+}
